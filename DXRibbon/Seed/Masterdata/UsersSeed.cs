@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace DXRibbon.Seed.Masterdata
 {
-    public class UsersSeed
+    public class UsersSeed : IDataSeed
     {
         public static IList<User> SeedList()
         {

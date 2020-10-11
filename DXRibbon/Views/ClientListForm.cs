@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
+﻿using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using DXRibbon.Seed.Partners;
 using System;
 using System.Collections.Generic;
@@ -22,19 +23,11 @@ namespace DXRibbon.Views
 
         private void ClientListForm_Load(object sender, EventArgs e)
         {
-            gCClientList.DataSource = ClientSeed.SeedList();
+            DataListControl clientGrid = new DataListControl(new ClientSeed());
+            this.Controls.Add(clientGrid);
 
-            parent.ChangeVisibility_ActionListRibbonGroup(false);
 
-            parent.ChangeEnableOption_bbMarkAsSentInvoice(false);
-            parent.ChangeEnableOption_bbPayInvoice(false);
-            parent.ChangeEnableOption_bbStornoInvoice(false);
-            parent.ChangeEnableOption_bbCancelInvoice(false);
-            parent.ChangeEnableOption_bbEditDataInvoice(false);
-            parent.ChangeEnableOption_LoginAsUser(false);
-
-            parent.ChangeEnableOption_bbOpenClientInvoice(false);
-            parent.ChangeEnableOption_bbAnnounceInvoice(false);
+            parent.ChangeVisibility_RibbonInvoiceActionsGroup(false);
 
             parent.ChangeEnableOption_bbCancelCommand(false);
             parent.ChangeEnableOption_bbSaveCommand(false);

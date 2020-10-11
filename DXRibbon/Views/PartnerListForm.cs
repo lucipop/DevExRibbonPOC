@@ -16,16 +16,8 @@ namespace DXRibbon.Views
 
         private void PartnerListForm_Load(object sender, EventArgs e)
         {
-            gcPartnerList.DataSource = PartnerSeed.SeedList();
-
-            parent.ChangeVisibility_ActionListRibbonGroup(false);
-
-            parent.ChangeEnableOption_bbMarkAsSentInvoice(false);
-            parent.ChangeEnableOption_bbPayInvoice(false);
-            parent.ChangeEnableOption_bbStornoInvoice(false);
-            parent.ChangeEnableOption_bbCancelInvoice(false);
-            parent.ChangeEnableOption_bbEditDataInvoice(false);
-            parent.ChangeEnableOption_LoginAsUser(false);
+            DataListControl partnersGrid = new DataListControl(new PartnerSeed());
+            this.Controls.Add(partnersGrid);
 
             parent.ChangeEnableOption_bbOpenClientInvoice(false);
             parent.ChangeEnableOption_bbAnnounceInvoice(false);

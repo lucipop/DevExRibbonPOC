@@ -1,6 +1,6 @@
 ﻿namespace DXRibbon.Views
 {
-    partial class UsersForm
+    partial class CommandForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // UsersForm
+            // CommandForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1780, 1280);
-            this.Name = "UsersForm";
-            this.Text = "Utilizatori";
-            this.Load += new System.EventHandler(this.UsersForm_Load);
+            this.Name = "CommandForm";
+            this.Text = "Listă comenzi";
+            this.Load += new System.EventHandler(this.CommandForm_Load);
             this.ResumeLayout(false);
 
         }

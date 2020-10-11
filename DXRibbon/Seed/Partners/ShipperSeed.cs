@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace DXRibbon.Seed.Partners
 {
@@ -30,7 +31,9 @@ namespace DXRibbon.Seed.Partners
     public class Shipper
     {
         public string CIF { get; set; }
+        [DisplayName("Nume complet")]
         public string Name { get; set; }
+        [DisplayName("Țară")]
         public string CountryName { get; set; }
         public Shipper()
         {

@@ -15,9 +15,10 @@ namespace DXRibbon.Views
 
         private void ShipperListForm_Load(object sender, EventArgs e)
         {
-            gcShipperList.DataSource = ShipperSeed.SeedList();
+            DataListControl shippersGrid = new DataListControl(new ShipperSeed());
+            this.Controls.Add(shippersGrid);
 
-            parent.ChangeVisibility_ActionListRibbonGroup(false);
+            parent.ChangeVisibility_RibbonInvoiceActionsGroup(false);
 
             parent.ChangeEnableOption_bbMarkAsSentInvoice(false);
             parent.ChangeEnableOption_bbPayInvoice(false);

@@ -36,6 +36,7 @@
     <Reference Include="DevExpress.BonusSkins.v20.1" />
     <Reference Include="DevExpress.Data.Desktop.v20.1" />
     <Reference Include="DevExpress.Data.v20.1" />
+    <Reference Include="DevExpress.Images.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v20.1" />
     <Reference Include="DevExpress.Sparkline.v20.1.Core" />
     <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -61,7 +62,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\FormListTypes.cs" />
+    <Compile Include="Seed\Commands\CommandSeed.cs" />
     <Compile Include="Seed\Masterdata\UsersSeed.cs" />
+    <Compile Include="Views\CommandForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CommandForm.Designer.cs">
+      <DependentUpon>CommandForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\InvoiceListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,12 +99,6 @@
     </Compile>
     <Compile Include="Views\ClientListForm.Designer.cs">
       <DependentUpon>ClientListForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewCommandForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\NewCommandForm.Designer.cs">
-      <DependentUpon>NewCommandForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\PartnerListForm.cs">
       <SubType>Form</SubType>
@@ -138,11 +141,11 @@
     <EmbeddedResource Include="Views\ClientListForm.resx">
       <DependentUpon>ClientListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\CommandForm.resx">
+      <DependentUpon>CommandForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\InvoiceListForm.resx">
       <DependentUpon>InvoiceListForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\NewCommandForm.resx">
-      <DependentUpon>NewCommandForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PartnerListForm.resx">
       <DependentUpon>PartnerListForm.cs</DependentUpon>
@@ -167,6 +170,81 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\area_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\area_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bar_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bar_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rangearea_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rangearea_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\technology_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\technology_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\announce_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-documents-icon32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Checklist.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checklist-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\parners.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Office-Customer-Male-icon32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TruckYellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Documents-folder-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MasterData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User-Files-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -21,9 +21,9 @@ namespace DXRibbon.Views
 
         private void UsersForm_Load(object sender, EventArgs e)
         {
-            gcUsersData.DataSource = UsersSeed.SeedList();
-
-            parent.ChangeVisibility_ActionListRibbonGroup(false);
+            DataListControl usersGrid = new DataListControl(new UsersSeed());
+            this.Controls.Add(usersGrid);
+            parent.ChangeVisibility_RibbonInvoiceActionsGroup(false);
 
             parent.ChangeEnableOption_bbMarkAsSentInvoice(false);
             parent.ChangeEnableOption_bbPayInvoice(false);

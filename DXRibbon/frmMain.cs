@@ -1,37 +1,140 @@
-﻿using DevExpress.XtraLayout;
+﻿using DevExpress.XtraNavBar;
 using DXRibbon.Controls;
-using DXRibbon.Seed.Documents;
-using DXRibbon.Seed.Partners;
+using DXRibbon.Helpers;
 using DXRibbon.Views;
 using System;
 using System.Windows.Forms;
 
 namespace DXRibbon
 {
-    public partial class frmMain : DevExpress.XtraEditors.XtraForm
+    public partial class frmMain : Form
     {
         public frmMain()
         {
             InitializeComponent();
-
+            
             RegisterNavBarActions();
 
-            CustomizeIcons();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            InitializeNavBar();
+        }
+
+        private void tabControl_PageChanged(object sender, EventArgs e)
+        {
+            Form activeForm = xtraTabbedMdiManager.SelectedPage.MdiChild;
+            if (activeForm != null)
+            {
+                switch (activeForm.Name)
+                {
+                    case string formName when formName == FormListTypes.InvoiceListForm:
+                        {
+                            ribbonInvoiceActionGroup.Visible = true;
+                            break;
+                        }
+                    case string formName when formName == FormListTypes.ClientListForm:
+                        {
+                            ribbonInvoiceActionGroup.Visible = false;
+                            break;
+                        }
+                    case string formName when formName == FormListTypes.PartnerListForm:
+                        {
+                            ribbonInvoiceActionGroup.Visible = false;
+                            break;
+                        }
+                    case string formName when formName == FormListTypes.ShipperListForm:
+                        {
+                            ribbonInvoiceActionGroup.Visible = false;
+                            break;
+                        }
+                    case string formName when formName == FormListTypes.UsersListForm:
+                        {
+                            ribbonInvoiceActionGroup.Visible = false;
+                            break;
+                        }
+                    default: break;
+                }
+            }
+        }
+
+        private void InitializeNavBar()
+        {
+            NavBarControl navBar = new NavBarControl();
+            this.Controls.Add(navBar);
+
+            navBar.Parent = panelControl1;
+
+            navBar.Dock = DockStyle.Fill;
+            navBar.PaintStyleKind = NavBarViewKind.NavigationPane;
+
+            NavBarGroup groupShipper = new NavBarGroup("Rutier");
+            groupShipper.LargeImage = Properties.Resources.folder_documents_icon32;
+            NavBarItem itemCommandList = new NavBarItem("Listă comenzi");
+            itemCommandList.LargeImage = Properties.Resources.checklist_32x32;
+            itemCommandList.LinkClicked += ShowCommandsPage;
+
+            NavBarGroup groupPartners = new NavBarGroup("Parteneri");
+            groupPartners.LargeImage = Properties.Resources.partners_32x32;
+            NavBarItem itemClientsList = new NavBarItem("Listă clienți");
+            itemClientsList.LargeImage = Properties.Resources.Office_Customer_Male_32x32;
+            itemClientsList.LinkClicked += ShowClientsPage;
+            NavBarItem itemShippersList = new NavBarItem("Listă transportatori");
+            itemShippersList.LargeImage = Properties.Resources.TruckYellow_32x32;
+            itemShippersList.LinkClicked += ShowShippersPage;
+            NavBarItem itemPartnersList = new NavBarItem("Listă parteneri");
+            itemPartnersList.LargeImage = Properties.Resources.checklist_32x32;
+            itemPartnersList.LinkClicked += ShowPartnersPage;
+
+            NavBarGroup groupDocuments = new NavBarGroup("Documente");
+            groupDocuments.LargeImage = Properties.Resources.Documents_folder_32x32;
+            NavBarItem itemInvoicesList = new NavBarItem("Facturi");
+            itemInvoicesList.LargeImage = Properties.Resources.folder_documents_icon32;
+            itemInvoicesList.LinkClicked += ShowInvoicesPage;
+
+            NavBarGroup groupMasterdata = new NavBarGroup("Masterdata");
+            groupMasterdata.LargeImage = Properties.Resources.MasterData_32x32;
+            NavBarItem itemUsersList = new NavBarItem("Utilizatori");
+            itemUsersList.LargeImage = Properties.Resources.User_Files_32x32;
+            itemUsersList.LinkClicked += ShowUsersPage;
+
+            navBar.BeginUpdate();
+
+            navBar.Groups.Add(groupShipper);
+            groupShipper.ItemLinks.Add(itemCommandList);
+            groupShipper.GroupStyle = NavBarGroupStyle.LargeIconsText;
+
+            navBar.Groups.Add(groupPartners);
+            groupPartners.ItemLinks.Add(itemClientsList);
+            groupPartners.ItemLinks.Add(itemShippersList);
+            groupPartners.ItemLinks.Add(itemPartnersList);
+            groupPartners.GroupStyle = NavBarGroupStyle.LargeIconsText;
+
+            navBar.Groups.Add(groupDocuments);
+            groupDocuments.ItemLinks.Add(itemInvoicesList);
+            groupDocuments.GroupStyle = NavBarGroupStyle.LargeIconsText;
+
+            navBar.Groups.Add(groupMasterdata);
+            groupMasterdata.ItemLinks.Add(itemUsersList);
+            groupMasterdata.GroupStyle = NavBarGroupStyle.LargeIconsText;
+
+
+
+
+            navBar.ActiveGroup = groupShipper;
+            navBar.LinkSelectionMode = LinkSelectionModeType.OneInGroupAndAllowAutoSelect;
+            navBar.EndUpdate();
         }
 
         private void RegisterNavBarActions()
         {
-            nbClientsModule.LinkClicked += ShowClientsList;
-            nbShippersModule.LinkClicked += ShowShippersList;
-            nbPartnerModule.LinkClicked += ShowPartnersList;
-            nbInvoiceModule.LinkClicked += ShowInvoicesList;
-            nbCommandListModule.LinkClicked += ShowNewCommandPage;
-            nbUsersModule.LinkClicked += ShowUsersPage;
-        }
-
-        private void CustomizeIcons()
-        {
-            nbCommandListModule.ImageOptions.LargeImageSize.ExpandSize(100, nbCommandListModule.ImageOptions.LargeImageSize, true);
+            //nbClientsModule.LinkClicked += ShowClientsList;
+            //nbShippersModule.LinkClicked += ShowShippersList;
+            //nbPartnerModule.LinkClicked += ShowPartnersList;
+            //nbInvoiceModule.LinkClicked += ShowInvoicesList;
+            //nbCommandListModule.LinkClicked += ShowNewCommandPage;
+            //nbUsersModule.LinkClicked += ShowUsersPage;
         }
 
         private Form FormActivation(Type formType)
@@ -46,7 +149,7 @@ namespace DXRibbon
             return null;
         }
 
-        private void ShowClientsList(object sender, EventArgs e)
+        private void ShowClientsPage(object sender, EventArgs e)
         {
             Form form = FormActivation(typeof(ClientListForm));
             if (form == null)
@@ -59,11 +162,9 @@ namespace DXRibbon
             {
                 form.Activate();
             }
-            //DataListControl clientsList = new DataListControl(new ClientSeed());
-            //panelControlMain.Controls.Add(clientsList);
         }
 
-        private void ShowShippersList(object sender, EventArgs e)
+        private void ShowShippersPage(object sender, EventArgs e)
         {
             Form form = FormActivation(typeof(ShipperListForm));
             if (form == null)
@@ -77,7 +178,7 @@ namespace DXRibbon
                 form.Activate();
             }
         }
-        private void ShowPartnersList(object sender, EventArgs e)
+        private void ShowPartnersPage(object sender, EventArgs e)
         {
             Form form = FormActivation(typeof(PartnerListForm));
             if (form == null)
@@ -92,7 +193,7 @@ namespace DXRibbon
             }
         }
 
-        private void ShowInvoicesList(object sender, EventArgs e)
+        private void ShowInvoicesPage(object sender, EventArgs e)
         {
             Form form = FormActivation(typeof(InvoiceListForm));
             if (form == null)
@@ -106,18 +207,13 @@ namespace DXRibbon
                 form.Activate();
             }
         }
-        //private void ShowInvoicesList(object sender, EventArgs e)
-        //{
-        //    DataListControl invoiceList = new DataListControl(new InvoiceSeed());
-        //    panelControlMain.Controls.Add(invoiceList);
-        //}
 
-        private void ShowNewCommandPage(object sender, EventArgs e)
+        private void ShowUsersPage(object sender, EventArgs e)
         {
-            Form form = FormActivation(typeof(NewCommandForm));
+            Form form = FormActivation(typeof(UsersForm));
             if (form == null)
             {
-                NewCommandForm f = new NewCommandForm();
+                UsersForm f = new UsersForm();
                 f.MdiParent = this;
                 f.Show();
             }
@@ -126,12 +222,13 @@ namespace DXRibbon
                 form.Activate();
             }
         }
-        private void ShowUsersPage(object sender, EventArgs e)
+
+        private void ShowCommandsPage(object sender, EventArgs e)
         {
-            Form form = FormActivation(typeof(UsersForm));
+            Form form = FormActivation(typeof(CommandForm));
             if (form == null)
             {
-                UsersForm f = new UsersForm();
+                CommandForm f = new CommandForm();
                 f.MdiParent = this;
                 f.Show();
             }
@@ -208,10 +305,11 @@ namespace DXRibbon
             bbLoginAsUser.Enabled = enable;
         }
 
-        public void ChangeVisibility_ActionListRibbonGroup(bool visible)
+        public void ChangeVisibility_RibbonInvoiceActionsGroup(bool visible)
         {
-            ribbonSelectedLineActionGroup.Visible = visible;
+            ribbonInvoiceActionGroup.Visible = visible;
         }
+
 
     }
 }

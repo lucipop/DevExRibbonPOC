@@ -36,7 +36,8 @@
             // 
             // gcDataList
             // 
-            this.gcDataList.Location = new System.Drawing.Point(3, 0);
+            this.gcDataList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcDataList.Location = new System.Drawing.Point(0, 0);
             this.gcDataList.MainView = this.gridView1;
             this.gcDataList.Name = "gcDataList";
             this.gcDataList.Size = new System.Drawing.Size(1415, 1119);
@@ -48,6 +49,8 @@
             // 
             this.gridView1.GridControl = this.gcDataList;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.RowClick += gridView1_RowClick;
             // 
             // DataListControl
             // 
