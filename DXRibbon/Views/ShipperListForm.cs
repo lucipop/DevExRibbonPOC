@@ -8,6 +8,7 @@ namespace DXRibbon.Views
     public partial class ShipperListForm : DevExpress.XtraEditors.XtraForm
     {
         frmMain parent = (frmMain)Application.OpenForms[0];
+        public DataListControl ShippersGrid { get; private set; }
         public ShipperListForm()
         {
             InitializeComponent();
@@ -15,10 +16,10 @@ namespace DXRibbon.Views
 
         private void ShipperListForm_Load(object sender, EventArgs e)
         {
-            DataListControl shippersGrid = new DataListControl(new ShipperSeed());
-            this.Controls.Add(shippersGrid);
+            ShippersGrid = new DataListControl(new ShipperSeed());
+            this.Controls.Add(ShippersGrid);
 
-            parent.ChangeVisibility_RibbonInvoiceActionsGroup(false);
+            parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
 
             parent.ChangeEnableOption_bbMarkAsSentInvoice(false);
             parent.ChangeEnableOption_bbPayInvoice(false);
@@ -34,7 +35,7 @@ namespace DXRibbon.Views
             parent.ChangeEnableOption_bbSaveCommand(false);
             parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeEnableOption_Filter(false);
+            parent.ChangeVisibility_Filter(false);
         }
 
         private void gridView1_RowClick(object sender, RowClickEventArgs e)

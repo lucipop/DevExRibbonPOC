@@ -12,6 +12,7 @@ namespace DXRibbon.Helpers
         public static readonly string ClientListForm = "ClientListForm";
         public static readonly string PartnerListForm = "PartnerListForm";
         public static readonly string ShipperListForm = "ShipperListForm";
-        public static readonly string UsersListForm = "UsersListForm";
+        public static readonly string UsersListForm = "UsersForm";
+        public static readonly string CommandListForm = "CommandForm";
     }
 }

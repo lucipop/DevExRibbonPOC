@@ -14,6 +14,7 @@ namespace DXRibbon.Views
     public partial class UsersForm : Form
     {
         frmMain parent = (frmMain)Application.OpenForms[0];
+        public DataListControl UsersGrid { get; private set; }
         public UsersForm()
         {
             InitializeComponent();
@@ -21,9 +22,9 @@ namespace DXRibbon.Views
 
         private void UsersForm_Load(object sender, EventArgs e)
         {
-            DataListControl usersGrid = new DataListControl(new UsersSeed());
-            this.Controls.Add(usersGrid);
-            parent.ChangeVisibility_RibbonInvoiceActionsGroup(false);
+            UsersGrid = new DataListControl(new UsersSeed());
+            this.Controls.Add(UsersGrid);
+            parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
 
             parent.ChangeEnableOption_bbMarkAsSentInvoice(false);
             parent.ChangeEnableOption_bbPayInvoice(false);
@@ -39,7 +40,7 @@ namespace DXRibbon.Views
             parent.ChangeEnableOption_bbSaveCommand(false);
             parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeEnableOption_Filter(false);
+            parent.ChangeVisibility_Filter(false);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace DXRibbon.Views
     public partial class PartnerListForm : DevExpress.XtraEditors.XtraForm
     {
         frmMain parent = (frmMain)Application.OpenForms[0];
+        public DataListControl PartnersGrid { get; private set; }
         public PartnerListForm()
         {
             InitializeComponent();
@@ -16,8 +17,8 @@ namespace DXRibbon.Views
 
         private void PartnerListForm_Load(object sender, EventArgs e)
         {
-            DataListControl partnersGrid = new DataListControl(new PartnerSeed());
-            this.Controls.Add(partnersGrid);
+            PartnersGrid = new DataListControl(new PartnerSeed());
+            this.Controls.Add(PartnersGrid);
 
             parent.ChangeEnableOption_bbOpenClientInvoice(false);
             parent.ChangeEnableOption_bbAnnounceInvoice(false);
@@ -26,7 +27,7 @@ namespace DXRibbon.Views
             parent.ChangeEnableOption_bbSaveCommand(false);
             parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeEnableOption_Filter(false);
+            parent.ChangeVisibility_Filter(false);
         }
 
         private void gridView1_RowClick(object sender, RowClickEventArgs e)

@@ -16,6 +16,8 @@ namespace DXRibbon.Views
     public partial class ClientListForm : DevExpress.XtraEditors.XtraForm
     {
         frmMain parent = (frmMain)Application.OpenForms[0];
+        public DataListControl ClientGrid { get; private set; }
+
         public ClientListForm()
         {
             InitializeComponent();
@@ -23,17 +25,17 @@ namespace DXRibbon.Views
 
         private void ClientListForm_Load(object sender, EventArgs e)
         {
-            DataListControl clientGrid = new DataListControl(new ClientSeed());
-            this.Controls.Add(clientGrid);
+            ClientGrid = new DataListControl(new ClientSeed());
+            this.Controls.Add(ClientGrid);
 
 
-            parent.ChangeVisibility_RibbonInvoiceActionsGroup(false);
+            parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
 
             parent.ChangeEnableOption_bbCancelCommand(false);
             parent.ChangeEnableOption_bbSaveCommand(false);
             parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeEnableOption_Filter(false);
+            parent.ChangeVisibility_Filter(false);
         }
 
         private void gridView1_RowClick(object sender, RowClickEventArgs e)

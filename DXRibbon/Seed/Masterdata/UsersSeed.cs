@@ -35,6 +35,10 @@ namespace DXRibbon.Seed.Masterdata
             public string FullName { get; set; }
             [DisplayName("Tel.de serviciu")]
             public string Phone { get; set; }
+            public User()
+            {
+
+            }
             public User(string admin, string username, string fullname, string phone)
             {
                 Admin = admin;

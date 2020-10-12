@@ -6,6 +6,7 @@ namespace DXRibbon.Views
 {
     public partial class CommandForm : Form
     {
+        public DataListControl CommandsGrid { get; private set; }
         public CommandForm()
         {
             InitializeComponent();
@@ -13,8 +14,8 @@ namespace DXRibbon.Views
 
         private void CommandForm_Load(object sender, EventArgs e)
         {
-            DataListControl commandsGrid = new DataListControl(new CommandSeed());
-            this.Controls.Add(commandsGrid);
+            CommandsGrid = new DataListControl(new CommandSeed());
+            this.Controls.Add(CommandsGrid);
         }
     }
 }

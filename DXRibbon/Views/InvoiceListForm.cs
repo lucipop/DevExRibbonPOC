@@ -16,6 +16,7 @@ namespace DXRibbon.Controls
     public partial class InvoiceListForm : DevExpress.XtraEditors.XtraForm
     {
         frmMain parent = (frmMain)Application.OpenForms[0];
+        public DataListControl InvoicesGrid { get; private set; }
         public InvoiceListForm()
         {
             InitializeComponent();
@@ -23,16 +24,16 @@ namespace DXRibbon.Controls
 
         private void InvoiceListForm_Load(object sender, EventArgs e)
         {
-            DataListControl invoicesGrid = new DataListControl(new InvoiceSeed());
-            this.Controls.Add(invoicesGrid);
+            InvoicesGrid = new DataListControl(new InvoiceSeed());
+            this.Controls.Add(InvoicesGrid);
 
-            parent.ChangeVisibility_RibbonInvoiceActionsGroup(true);
+            parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(true);
 
             parent.ChangeEnableOption_bbCancelCommand(false);
             parent.ChangeEnableOption_bbSaveCommand(false);
             parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeEnableOption_Filter(true);
+            parent.ChangeVisibility_Filter(true);
 
             parent.ChangeEnableOption_LoginAsUser(false);
         }

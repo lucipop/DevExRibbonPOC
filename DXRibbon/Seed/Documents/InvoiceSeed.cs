@@ -55,6 +55,10 @@ namespace DXRibbon.Seed.Documents
         public string InvoiceStatus { get; set; }
         //[Display(AutoGenerateField = false)]
         //public int InvoiceStatus { get; set; }
+        public Invoice()
+        {
+
+        }
     
         public Invoice(
             string ContractNumber, 

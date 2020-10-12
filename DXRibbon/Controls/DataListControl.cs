@@ -6,6 +6,11 @@ using DXRibbon.Seed;
 using DXRibbon.Seed.Partners;
 using DXRibbon.Seed.Masterdata;
 using DXRibbon.Helpers;
+using DXRibbon.Seed.Commands;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraGrid.Views.Base.ViewInfo;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace DXRibbon.Views
 {
@@ -13,12 +18,18 @@ namespace DXRibbon.Views
     {
         frmMain mainForm;
         IDataSeed dataSeed;
+        public GridView GridView
+        {
+           get { return gridView1; } 
+        }
         public DataListControl(IDataSeed dataSeed)
         {
             InitializeComponent();
             this.dataSeed = dataSeed;
             mainForm = (frmMain)Application.OpenForms[0];
 
+            gridView1.OptionsBehavior.EditingMode = GridEditingMode.EditForm;
+            gridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
         }
 
         private void DataListControl_Load(object sender, EventArgs e)
@@ -50,6 +61,11 @@ namespace DXRibbon.Views
                         gcDataList.DataSource = UsersSeed.SeedList();
                         break;
                     }
+                case CommandSeed commandsSeed:
+                    {
+                        gcDataList.DataSource = CommandSeed.SeedList();
+                        break;
+                    }
                 default: break;
             }
 
@@ -58,6 +74,7 @@ namespace DXRibbon.Views
         {
             var parentFormName = (sender as GridView).GridControl.FindForm().Name;
             
+            //enable/disable ribbon action buttons
             switch (parentFormName)
             {
                 case string formName when formName == FormListTypes.InvoiceListForm:
@@ -85,12 +102,27 @@ namespace DXRibbon.Views
                         DisplayUsersRibbonAction(sender);
                         break;
                     }
+                case string formName when formName == FormListTypes.CommandListForm:
+                    {
+                        DisplayCommandsRibbonAction(sender);
+                        break;
+                    }
                 default: break;
             }
+
+            //enable  buttons
+            mainForm.ChangeEnableOption_AddRow(true);
+            mainForm.ChangeEnableOption_EditRow(true);
+            mainForm.ChangeEnableOption_DeleteRow(true);
+            mainForm.ChangeEnableOption_bbReset(true);
+            mainForm.ChangeEnableOption_bbExportXLSX(true);
+            mainForm.ChangeEnableOption_RefreshCommand(true);
         }
 
         private void DisplayInvoiceRibbonAction(object sender)
         {
+            mainForm.ChangeVisibility_Filter(true);
+
             Invoice selectedRowInvoice = (sender as GridView).GetFocusedRow() as Invoice;
             switch (selectedRowInvoice)
             {
@@ -160,40 +192,32 @@ namespace DXRibbon.Views
 
         private void DisplayClientRibbonAction(object sender)
         {
-            mainForm.ChangeVisibility_RibbonInvoiceActionsGroup(false);
-
-            mainForm.ChangeEnableOption_bbMarkAsSentInvoice(false);
-            mainForm.ChangeEnableOption_bbPayInvoice(false);
-            mainForm.ChangeEnableOption_bbStornoInvoice(false);
-            mainForm.ChangeEnableOption_bbCancelInvoice(false);
-            mainForm.ChangeEnableOption_bbEditDataInvoice(false);
-            mainForm.ChangeEnableOption_LoginAsUser(false);
-
-            mainForm.ChangeEnableOption_bbOpenClientInvoice(false);
-            mainForm.ChangeEnableOption_bbAnnounceInvoice(false);
+            mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_Filter(false);
         }
 
         private void DisplayPartnerRibbonAction(object sender)
         {
-            mainForm.ChangeVisibility_RibbonInvoiceActionsGroup(false);
-
-            mainForm.ChangeEnableOption_bbMarkAsSentInvoice(false);
-            mainForm.ChangeEnableOption_bbPayInvoice(false);
-            mainForm.ChangeEnableOption_bbStornoInvoice(false);
-            mainForm.ChangeEnableOption_bbCancelInvoice(false);
-            mainForm.ChangeEnableOption_bbEditDataInvoice(false);
-            mainForm.ChangeEnableOption_LoginAsUser(false);
-
+            mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_Filter(false);
         }
 
         private void DisplayShipperRibbonAction(object sender)
         {
-
+            mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_Filter(false);
         }
 
         private void DisplayUsersRibbonAction(object sender)
         {
+            mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_Filter(true);
+        }
 
+        private void DisplayCommandsRibbonAction(object sender)
+        {
+            mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_Filter(true);
         }
     }
 }
