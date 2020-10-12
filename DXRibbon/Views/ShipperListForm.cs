@@ -19,28 +19,13 @@ namespace DXRibbon.Views
             ShippersGrid = new DataListControl(new ShipperSeed());
             this.Controls.Add(ShippersGrid);
 
-            parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            //parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
 
-            parent.ChangeEnableOption_bbMarkAsSentInvoice(false);
-            parent.ChangeEnableOption_bbPayInvoice(false);
-            parent.ChangeEnableOption_bbStornoInvoice(false);
-            parent.ChangeEnableOption_bbCancelInvoice(false);
-            parent.ChangeEnableOption_bbEditDataInvoice(false);
-            parent.ChangeEnableOption_LoginAsUser(false);
+            //parent.ChangeEnableOption_bbCancelCommand(false);
+            //parent.ChangeEnableOption_bbSaveCommand(false);
+            //parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeEnableOption_bbOpenClientInvoice(false);
-            parent.ChangeEnableOption_bbAnnounceInvoice(false);
-
-            parent.ChangeEnableOption_bbCancelCommand(false);
-            parent.ChangeEnableOption_bbSaveCommand(false);
-            parent.ChangeEnableOption_bbCreateShipperCommand(false);
-
-            parent.ChangeVisibility_Filter(false);
-        }
-
-        private void gridView1_RowClick(object sender, RowClickEventArgs e)
-        {
-            
+            //parent.ChangeVisibility_Filter(false);
         }
     }
 }

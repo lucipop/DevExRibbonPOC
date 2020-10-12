@@ -27,15 +27,15 @@ namespace DXRibbon.Controls
             InvoicesGrid = new DataListControl(new InvoiceSeed());
             this.Controls.Add(InvoicesGrid);
 
-            parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(true);
+            //parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(true);
 
-            parent.ChangeEnableOption_bbCancelCommand(false);
-            parent.ChangeEnableOption_bbSaveCommand(false);
-            parent.ChangeEnableOption_bbCreateShipperCommand(false);
+            //parent.ChangeEnableOption_bbCancelCommand(false);
+            //parent.ChangeEnableOption_bbSaveCommand(false);
+            //parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeVisibility_Filter(true);
+            //parent.ChangeVisibility_Filter(true);
 
-            parent.ChangeEnableOption_LoginAsUser(false);
+            //parent.ChangeEnableOption_ChangePassword(true);
         }
     }
 }

@@ -7,10 +7,6 @@ using DXRibbon.Seed.Partners;
 using DXRibbon.Seed.Masterdata;
 using DXRibbon.Helpers;
 using DXRibbon.Seed.Commands;
-using DevExpress.XtraGrid;
-using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraGrid.Views.Base.ViewInfo;
-using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace DXRibbon.Views
 {
@@ -68,7 +64,7 @@ namespace DXRibbon.Views
                     }
                 default: break;
             }
-
+            EnableCommonActionButtons();
         }
         private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
@@ -111,6 +107,11 @@ namespace DXRibbon.Views
             }
 
             //enable  buttons
+            EnableCommonActionButtons();
+        }
+
+        private void EnableCommonActionButtons()
+        {
             mainForm.ChangeEnableOption_AddRow(true);
             mainForm.ChangeEnableOption_EditRow(true);
             mainForm.ChangeEnableOption_DeleteRow(true);
@@ -124,6 +125,14 @@ namespace DXRibbon.Views
             mainForm.ChangeVisibility_Filter(true);
 
             Invoice selectedRowInvoice = (sender as GridView).GetFocusedRow() as Invoice;
+
+            mainForm.ChangeVisibility_OpenInvoice(true);
+            mainForm.ChangeVisibility_EditInvoice(true);
+            mainForm.ChangeVisibility_MarkInvoiceSent(true);
+            mainForm.ChangeVisibility_PayInvoice(true);
+            mainForm.ChangeVisibility_CancelInvoice(true);
+            mainForm.ChangeVisibility_MementoInvoice(true);
+
             switch (selectedRowInvoice)
             {
                 case Invoice invoice when invoice.InvoiceStatus == InvoiceSeed.Emitted:
@@ -193,31 +202,45 @@ namespace DXRibbon.Views
         private void DisplayClientRibbonAction(object sender)
         {
             mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_OtherActionsGroup(false);
             mainForm.ChangeVisibility_Filter(false);
         }
 
         private void DisplayPartnerRibbonAction(object sender)
         {
             mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_OtherActionsGroup(false);
             mainForm.ChangeVisibility_Filter(false);
         }
 
         private void DisplayShipperRibbonAction(object sender)
         {
             mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_OtherActionsGroup(false);
             mainForm.ChangeVisibility_Filter(false);
         }
 
         private void DisplayUsersRibbonAction(object sender)
         {
-            mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(true);
+            mainForm.ChangeVisibility_OtherActionsGroup(false);
+            mainForm.ChangeEnableOption_ChangePassword(true);
             mainForm.ChangeVisibility_Filter(true);
         }
 
         private void DisplayCommandsRibbonAction(object sender)
         {
             mainForm.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            mainForm.ChangeVisibility_OtherActionsGroup(true);
+            mainForm.ChangeEnableOptions_DuplicateCommand(true);
             mainForm.ChangeVisibility_Filter(true);
+
+            mainForm.ChangeVisibility_OpenInvoice(false);
+            mainForm.ChangeVisibility_EditInvoice(false);
+            mainForm.ChangeVisibility_MarkInvoiceSent(false);
+            mainForm.ChangeVisibility_PayInvoice(false);
+            mainForm.ChangeVisibility_CancelInvoice(false);
+            mainForm.ChangeVisibility_MementoInvoice(false);
         }
     }
 }

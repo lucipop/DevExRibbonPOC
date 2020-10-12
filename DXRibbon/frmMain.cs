@@ -35,15 +35,19 @@ namespace DXRibbon
                         case string formName when formName == FormListTypes.InvoiceListForm:
                             {
                                 ChangeEnableOptions_RibbonInvoiceActionsGroup(true);
+
+                                ChangeEnableOption_ChangePassword(false);
+
                                 ChangeVisibility_Filter(true);
 
-                                ChangeEnableOptions_SelectionGroup(false);
+                                ChangeEnableOptions_SelectionGroup(true);
                                 break;
                             }
                         case string formName when formName == FormListTypes.ClientListForm:
                             {
                                 ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
                                 ChangeVisibility_Filter(false);
+                                ChangeVisibility_OtherActionsGroup(false);
 
                                 ChangeEnableOptions_SelectionGroup(true);
                                 break;
@@ -52,6 +56,7 @@ namespace DXRibbon
                             {
                                 ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
                                 ChangeVisibility_Filter(false);
+                                ChangeVisibility_OtherActionsGroup(false);
 
                                 ChangeEnableOptions_SelectionGroup(true);
                                 break;
@@ -60,14 +65,25 @@ namespace DXRibbon
                             {
                                 ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
                                 ChangeVisibility_Filter(false);
+                                ChangeVisibility_OtherActionsGroup(false);
 
                                 ChangeEnableOptions_SelectionGroup(true);
                                 break;
                             }
                         case string formName when formName == FormListTypes.UsersListForm:
                             {
-                                ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
-                                ChangeVisibility_Filter(false);
+                                ChangeEnableOptions_RibbonInvoiceActionsGroup(true);
+                                ChangeVisibility_OpenInvoice(false);
+                                ChangeVisibility_EditInvoice(false);
+                                ChangeVisibility_MarkInvoiceSent(false);
+                                ChangeVisibility_PayInvoice(false);
+                                ChangeVisibility_CancelInvoice(false);
+                                ChangeVisibility_MementoInvoice(false);
+
+                                ChangeEnableOption_ChangePassword(true);
+
+                                ChangeVisibility_Filter(true);
+                                ChangeVisibility_OtherActionsGroup(false);
 
                                 ChangeEnableOptions_SelectionGroup(true);
                                 break;
@@ -76,6 +92,7 @@ namespace DXRibbon
                             {
                                 ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
                                 ChangeVisibility_Filter(true);
+                                ChangeVisibility_OtherActionsGroup(true);
 
                                 ChangeEnableOptions_SelectionGroup(true);
                                 break;
@@ -92,6 +109,9 @@ namespace DXRibbon
                 ChangeEnableOption_EditRow(false);
                 ChangeEnableOption_bbReset(false);
                 ChangeEnableOption_bbExportXLSX(false);
+                ChangeVisibility_OtherActionsGroup(false);
+                ChangeVisibility_Filter(false);
+                ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
             }
         }
 
@@ -320,8 +340,92 @@ namespace DXRibbon
 
         public void ChangeVisibility_Filter(bool visibility)
         {
-            ribbonPageFilterGroup.Visible = visibility;
-            ribbonPageFilterGroup.Enabled = visibility;
+           // ribbonPageFilterGroup.Visible = visibility;
+            //ribbonPageFilterGroup.Enabled = visibility;
+        }
+
+        public void ChangeVisibility_Storno(bool enable)
+        {
+            if (enable)
+            {
+                bbStornoInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                bbStornoInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+        }
+
+        public void ChangeVisibility_OpenInvoice(bool enable)
+        {
+            if (enable)
+            {
+                bbOpenClientInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                bbOpenClientInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+        }
+
+        public void ChangeVisibility_EditInvoice(bool enable)
+        {
+            if (enable)
+            {
+                bbEditInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                bbEditInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+        }
+
+        public void ChangeVisibility_MarkInvoiceSent(bool enable)
+        {
+            if (enable)
+            {
+                bbMarkAsSentInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                bbMarkAsSentInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+        }
+
+        public void ChangeVisibility_PayInvoice(bool enable)
+        {
+            if (enable)
+            {
+                bbPayInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                bbPayInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+        }
+
+        public void ChangeVisibility_CancelInvoice(bool enable)
+        {
+            if (enable)
+            {
+                bbCancelInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                bbCancelInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+        }
+
+        public void ChangeVisibility_MementoInvoice(bool enable)
+        {
+            if (enable)
+            {
+                bbAnnounceInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                bbAnnounceInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
         }
 
         public void ChangeEnableOptions_SelectionGroup(bool visibility)
@@ -330,9 +434,18 @@ namespace DXRibbon
             ribbonPageSelectionGroup.Enabled = visibility;
         }
 
-        public void ChangeEnableOption_LoginAsUser(bool enable)
+        public void ChangeEnableOption_ChangePassword(bool enable)
         {
-            bbLoginAsUser.Enabled = enable;
+            bbChangePassword.Enabled = enable;
+            if (enable)
+            {
+                bbChangePassword.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            else
+            {
+                bbChangePassword.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
+            
         }
 
         public void ChangeEnableOption_AddRow(bool enable)
@@ -360,11 +473,15 @@ namespace DXRibbon
             ribbonInvoiceActionGroup.Visible = enable;
             ribbonInvoiceActionGroup.Enabled = enable;
         }
-        
-        public void ChangeEnableOptions_RibbonInvoiceActionGroup(bool enable)
+       
+        public void ChangeVisibility_OtherActionsGroup(bool enable)
         {
-            ribbonInvoiceActionGroup.Visible = enable;
-            ribbonInvoiceActionGroup.Enabled = enable;
+            ribbonOtherActionsGroup.Visible = enable;
+        }
+
+        public void ChangeEnableOptions_DuplicateCommand(bool enable)
+        {
+            bbDuplicateOrder.Enabled = enable;
         }
 
         private void bbClose_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

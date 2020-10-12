@@ -29,13 +29,13 @@ namespace DXRibbon.Views
             this.Controls.Add(ClientGrid);
 
 
-            parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
+            //parent.ChangeEnableOptions_RibbonInvoiceActionsGroup(false);
 
-            parent.ChangeEnableOption_bbCancelCommand(false);
-            parent.ChangeEnableOption_bbSaveCommand(false);
-            parent.ChangeEnableOption_bbCreateShipperCommand(false);
+            //parent.ChangeEnableOption_bbCancelCommand(false);
+            //parent.ChangeEnableOption_bbSaveCommand(false);
+            //parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeVisibility_Filter(false);
+            //parent.ChangeVisibility_Filter(false);
         }
 
         private void gridView1_RowClick(object sender, RowClickEventArgs e)

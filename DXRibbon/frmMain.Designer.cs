@@ -45,6 +45,10 @@ namespace DXRibbon
             this.bbAddRow = new DevExpress.XtraBars.BarButtonItem();
             this.bbEditRow = new DevExpress.XtraBars.BarButtonItem();
             this.bbDeleteRow = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageSelectionGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbExportXLSX = new DevExpress.XtraBars.BarButtonItem();
+            this.bbRefresh = new DevExpress.XtraBars.BarButtonItem();
+            this.bbReset = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonInvoiceActionGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.bbOpenClientInvoice = new DevExpress.XtraBars.BarButtonItem();
             this.bbEditInvoice = new DevExpress.XtraBars.BarButtonItem();
@@ -53,18 +57,13 @@ namespace DXRibbon
             this.bbStornoInvoice = new DevExpress.XtraBars.BarButtonItem();
             this.bbCancelInvoice = new DevExpress.XtraBars.BarButtonItem();
             this.bbAnnounceInvoice = new DevExpress.XtraBars.BarButtonItem();
-            this.bbLoginAsUser = new DevExpress.XtraBars.BarButtonItem();
+            this.bbChangePassword = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonOtherActionsGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.bbOrderClient = new DevExpress.XtraBars.BarButtonItem();
             this.bbOrderShipper = new DevExpress.XtraBars.BarButtonItem();
             this.bbNewCommand = new DevExpress.XtraBars.BarButtonItem();
             this.bbDuplicateOrder = new DevExpress.XtraBars.BarButtonItem();
             this.bbSagaExport = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageSelectionGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.bbExportXLSX = new DevExpress.XtraBars.BarButtonItem();
-            this.bbRefresh = new DevExpress.XtraBars.BarButtonItem();
-            this.bbReset = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageFilterGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.beFilter = new DevExpress.XtraBars.BarEditItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
@@ -144,10 +143,9 @@ namespace DXRibbon
             // 
             this.ribbonMainOptions.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageActionGroup,
-            this.ribbonPageSelectionGroup,
             this.ribbonInvoiceActionGroup,
             this.ribbonOtherActionsGroup,
-            this.ribbonPageFilterGroup});
+            this.ribbonPageSelectionGroup});
             this.ribbonMainOptions.Name = "ribbonMainOptions";
             this.ribbonMainOptions.Text = "View";
             // 
@@ -192,6 +190,41 @@ namespace DXRibbon
             this.bbDeleteRow.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bbDeleteRow.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbDeleteRow_ItemClick);
             // 
+            // ribbonPageSelectionGroup
+            // 
+            this.ribbonPageSelectionGroup.ItemLinks.Add(this.bbExportXLSX);
+            this.ribbonPageSelectionGroup.ItemLinks.Add(this.bbRefresh);
+            this.ribbonPageSelectionGroup.ItemLinks.Add(this.bbReset);
+            this.ribbonPageSelectionGroup.Name = "ribbonPageSelectionGroup";
+            // 
+            // bbExportXLSX
+            // 
+            this.bbExportXLSX.Caption = "Exportă în XLSX";
+            this.bbExportXLSX.Enabled = false;
+            this.bbExportXLSX.Id = 10;
+            this.bbExportXLSX.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbExportXLSX.ImageOptions.Image")));
+            this.bbExportXLSX.Name = "bbExportXLSX";
+            this.bbExportXLSX.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bbRefresh
+            // 
+            this.bbRefresh.Caption = "Refresh";
+            this.bbRefresh.Enabled = false;
+            this.bbRefresh.Id = 9;
+            this.bbRefresh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbRefresh.ImageOptions.Image")));
+            this.bbRefresh.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbRefresh.ImageOptions.LargeImage")));
+            this.bbRefresh.Name = "bbRefresh";
+            this.bbRefresh.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
+            // bbReset
+            // 
+            this.bbReset.Caption = "Reset";
+            this.bbReset.Enabled = false;
+            this.bbReset.Id = 11;
+            this.bbReset.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbReset.ImageOptions.LargeImage")));
+            this.bbReset.Name = "bbReset";
+            this.bbReset.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            // 
             // ribbonInvoiceActionGroup
             // 
             this.ribbonInvoiceActionGroup.ItemLinks.Add(this.bbOpenClientInvoice);
@@ -201,7 +234,7 @@ namespace DXRibbon
             this.ribbonInvoiceActionGroup.ItemLinks.Add(this.bbStornoInvoice);
             this.ribbonInvoiceActionGroup.ItemLinks.Add(this.bbCancelInvoice);
             this.ribbonInvoiceActionGroup.ItemLinks.Add(this.bbAnnounceInvoice);
-            this.ribbonInvoiceActionGroup.ItemLinks.Add(this.bbLoginAsUser);
+            this.ribbonInvoiceActionGroup.ItemLinks.Add(this.bbChangePassword);
             this.ribbonInvoiceActionGroup.Name = "ribbonInvoiceActionGroup";
             this.ribbonInvoiceActionGroup.Text = "Acțiuni Linie Selectată";
             this.ribbonInvoiceActionGroup.Visible = false;
@@ -256,6 +289,7 @@ namespace DXRibbon
             this.bbStornoInvoice.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbStornoInvoice.ImageOptions.Image")));
             this.bbStornoInvoice.Name = "bbStornoInvoice";
             this.bbStornoInvoice.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bbStornoInvoice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // bbCancelInvoice
             // 
@@ -277,15 +311,16 @@ namespace DXRibbon
             this.bbAnnounceInvoice.Name = "bbAnnounceInvoice";
             this.bbAnnounceInvoice.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             // 
-            // bbLoginAsUser
+            // bbChangePassword
             // 
-            this.bbLoginAsUser.Caption = "Login";
-            this.bbLoginAsUser.Enabled = false;
-            this.bbLoginAsUser.Hint = "Login";
-            this.bbLoginAsUser.Id = 38;
-            this.bbLoginAsUser.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbLoginAsUser.ImageOptions.LargeImage")));
-            this.bbLoginAsUser.Name = "bbLoginAsUser";
-            this.bbLoginAsUser.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bbChangePassword.Caption = "Schimbare Parolă";
+            this.bbChangePassword.Enabled = false;
+            this.bbChangePassword.Hint = "Schimbare Parolă";
+            this.bbChangePassword.Id = 38;
+            this.bbChangePassword.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbChangePassword.ImageOptions.LargeImage")));
+            this.bbChangePassword.Name = "bbChangePassword";
+            this.bbChangePassword.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bbChangePassword.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // ribbonOtherActionsGroup
             // 
@@ -301,7 +336,6 @@ namespace DXRibbon
             // bbOrderClient
             // 
             this.bbOrderClient.Caption = "Comandă Client";
-            this.bbOrderClient.Enabled = false;
             this.bbOrderClient.Hint = "Comandă Client";
             this.bbOrderClient.Id = 39;
             this.bbOrderClient.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbOrderClient.ImageOptions.LargeImage")));
@@ -311,7 +345,6 @@ namespace DXRibbon
             // bbOrderShipper
             // 
             this.bbOrderShipper.Caption = "Comandă Transportator";
-            this.bbOrderShipper.Enabled = false;
             this.bbOrderShipper.Hint = "Comandă Transportator";
             this.bbOrderShipper.Id = 40;
             this.bbOrderShipper.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbOrderShipper.ImageOptions.LargeImage")));
@@ -320,7 +353,6 @@ namespace DXRibbon
             // bbNewCommand
             // 
             this.bbNewCommand.Caption = "Comandă nouă";
-            this.bbNewCommand.Enabled = false;
             this.bbNewCommand.Hint = "Comandă nouă";
             this.bbNewCommand.Id = 41;
             this.bbNewCommand.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbNewCommand.ImageOptions.LargeImage")));
@@ -329,7 +361,6 @@ namespace DXRibbon
             // bbDuplicateOrder
             // 
             this.bbDuplicateOrder.Caption = "Duplică Comanda";
-            this.bbDuplicateOrder.Enabled = false;
             this.bbDuplicateOrder.Hint = "Duplică Comanda";
             this.bbDuplicateOrder.Id = 42;
             this.bbDuplicateOrder.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbDuplicateOrder.ImageOptions.LargeImage")));
@@ -338,54 +369,10 @@ namespace DXRibbon
             // bbSagaExport
             // 
             this.bbSagaExport.Caption = "Export pentru Saga";
-            this.bbSagaExport.Enabled = false;
             this.bbSagaExport.Hint = "Export pentru Saga";
             this.bbSagaExport.Id = 43;
             this.bbSagaExport.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbSagaExport.ImageOptions.LargeImage")));
             this.bbSagaExport.Name = "bbSagaExport";
-            // 
-            // ribbonPageSelectionGroup
-            // 
-            this.ribbonPageSelectionGroup.ItemLinks.Add(this.bbExportXLSX);
-            this.ribbonPageSelectionGroup.ItemLinks.Add(this.bbRefresh);
-            this.ribbonPageSelectionGroup.ItemLinks.Add(this.bbReset);
-            this.ribbonPageSelectionGroup.Name = "ribbonPageSelectionGroup";
-            // 
-            // bbExportXLSX
-            // 
-            this.bbExportXLSX.Caption = "Exportă în XLSX";
-            this.bbExportXLSX.Enabled = false;
-            this.bbExportXLSX.Id = 10;
-            this.bbExportXLSX.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbExportXLSX.ImageOptions.Image")));
-            this.bbExportXLSX.Name = "bbExportXLSX";
-            this.bbExportXLSX.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // bbRefresh
-            // 
-            this.bbRefresh.Caption = "Refresh";
-            this.bbRefresh.Enabled = false;
-            this.bbRefresh.Id = 9;
-            this.bbRefresh.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbRefresh.ImageOptions.Image")));
-            this.bbRefresh.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbRefresh.ImageOptions.LargeImage")));
-            this.bbRefresh.Name = "bbRefresh";
-            this.bbRefresh.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // bbReset
-            // 
-            this.bbReset.Caption = "Reset";
-            this.bbReset.Enabled = false;
-            this.bbReset.Id = 11;
-            this.bbReset.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bbReset.ImageOptions.Image")));
-            this.bbReset.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("bbReset.ImageOptions.LargeImage")));
-            this.bbReset.Name = "bbReset";
-            this.bbReset.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            // 
-            // ribbonPageFilterGroup
-            // 
-            this.ribbonPageFilterGroup.Enabled = false;
-            this.ribbonPageFilterGroup.ItemLinks.Add(this.beFilter);
-            this.ribbonPageFilterGroup.Name = "ribbonPageFilterGroup";
-            this.ribbonPageFilterGroup.Text = "Filtru";
             // 
             // beFilter
             // 
@@ -585,7 +572,7 @@ namespace DXRibbon
             this.bbCancelInvoice,
             this.bbAnnounceInvoice,
             this.bbDeleteUser,
-            this.bbLoginAsUser,
+            this.bbChangePassword,
             this.bbOrderClient,
             this.bbOrderShipper,
             this.bbNewCommand,
@@ -599,7 +586,7 @@ namespace DXRibbon
             this.ribbonControl.PageHeaderItemLinks.Add(this.bbClose);
             this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonMainOptions});
-            this.ribbonControl.Size = new System.Drawing.Size(2830, 364);
+            this.ribbonControl.Size = new System.Drawing.Size(3241, 364);
             // 
             // panelControl1
             // 
@@ -620,7 +607,7 @@ namespace DXRibbon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2830, 1368);
+            this.ClientSize = new System.Drawing.Size(3241, 1368);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.ribbonControl);
             this.IsMdiContainer = true;
@@ -684,12 +671,11 @@ namespace DXRibbon
         private DevExpress.XtraBars.BarButtonItem bbCancelInvoice;
         private DevExpress.XtraBars.BarButtonItem bbAnnounceInvoice;
         private DevExpress.XtraBars.BarButtonItem bbDeleteUser;
-        private DevExpress.XtraBars.BarButtonItem bbLoginAsUser;
+        private DevExpress.XtraBars.BarButtonItem bbChangePassword;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonMainOptions;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageActionGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonInvoiceActionGroup;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageSelectionGroup;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageFilterGroup;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonOtherActionsGroup;
         private DevExpress.XtraBars.BarButtonItem bbOrderClient;

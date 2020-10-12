@@ -20,14 +20,14 @@ namespace DXRibbon.Views
             PartnersGrid = new DataListControl(new PartnerSeed());
             this.Controls.Add(PartnersGrid);
 
-            parent.ChangeEnableOption_bbOpenClientInvoice(false);
-            parent.ChangeEnableOption_bbAnnounceInvoice(false);
+            //parent.ChangeEnableOption_bbOpenClientInvoice(false);
+            //parent.ChangeEnableOption_bbAnnounceInvoice(false);
 
-            parent.ChangeEnableOption_bbCancelCommand(false);
-            parent.ChangeEnableOption_bbSaveCommand(false);
-            parent.ChangeEnableOption_bbCreateShipperCommand(false);
+            //parent.ChangeEnableOption_bbCancelCommand(false);
+            //parent.ChangeEnableOption_bbSaveCommand(false);
+            //parent.ChangeEnableOption_bbCreateShipperCommand(false);
 
-            parent.ChangeVisibility_Filter(false);
+            //parent.ChangeVisibility_Filter(false);
         }
 
         private void gridView1_RowClick(object sender, RowClickEventArgs e)
